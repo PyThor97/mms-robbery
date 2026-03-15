@@ -1,18 +1,18 @@
 Config = {}
 
-Config.defaultlang = "de_lang"
+Config.defaultlang = "en_lang"
 
 -- Webhook Settings
 
 Config.WebHook = false
 
 Config.WHTitle = 'Robbery:'
-Config.WHLink = ''  -- Discord WH link Here
-Config.WHColor = 16711680 -- red
+Config.WHLink = ''         -- Discord WH link Here
+Config.WHColor = 16711680  -- red
 Config.WHName = 'Robbery:' -- name
-Config.WHLogo = '' -- must be 30x30px
-Config.WHFooterLogo = '' -- must be 30x30px
-Config.WHAvatar = '' -- must be 30x30px
+Config.WHLogo = ''         -- must be 30x30px
+Config.WHFooterLogo = ''   -- must be 30x30px
+Config.WHAvatar = ''       -- must be 30x30px
 
 -- Script Settings
 
@@ -22,12 +22,35 @@ Config.UseAlertSystem = true
 
 -- OnDuty Settings
 
-Config.synSociety = false -- If You Use SYN Society and go OnDuty in Syn
+Config.synSociety = false     -- If You Use SYN Society and go OnDuty in Syn
 Config.VorpDutySystem = false -- VORP DUtySystem
-Config.DLSociety = false -- DL Society
-Config.EZSociety = false -- EZ Society
-Config.BCCSociety = false -- BCC Society
-Config.SSPoliceJob = false -- SSPolice
+Config.DLSociety = false      -- DL Society
+Config.EZSociety = false      -- EZ Society
+Config.BCCSociety = false     -- BCC Society
+Config.SSPoliceJob = false    -- SSPolice
+Config.BCCJobAlerts = true
+
+-- bcc job alert config
+Config.robbery_alert = exports['bcc-job-alerts']:RegisterAlert({
+    name = 'Robbery',          --The name of the alert
+    command = "robbery_alert", -- the command, this is what players will use with /
+    message = "",              -- Message to show to theh police
+    messageTime = 40000,       -- Time the message will stay on screen (miliseconds)
+    jobs = { "police" },       -- Jobs the alert is for
+    jobgrade =
+    {
+        police = { 0, 1, 2, 3 },             -- What grades the alert will effect
+    },
+    icon = "star",                           -- The icon the alert will use
+    color = 'COLOR_WHITE',                   -- The color of the icon / https://github.com/femga/rdr3_discoveries/tree/master/useful_info_from_rpfs/colours
+    texturedict = "generic_textures",        --https://github.com/femga/rdr3_discoveries/tree/master/useful_info_from_rpfs/textures/menu_textures
+    hash = -1282792512,                      -- The radius blip
+    radius = 40.0,                           -- The size of the radius blip
+    blipTime = 60000,                        -- How long the blip will stay for the job (miliseconds)
+    blipDelay = 5000,                        -- Delay time before the job is notified (miliseconds)
+    originText = "Police has been alerted!", -- Text displayed to the user who enacted the command
+    originTime = 40000                       --The time the origintext displays (miliseconds)
+})
 
 -- SS Alert Settings
 
@@ -42,7 +65,7 @@ Config.Title = 'Alarm'
 Config.Volume = 0.2
 Config.EmbedLink = 'https://www.youtube.com/watch?v=qrNZrr9lD7k' -- Embed Link
 Config.Radius = 250
-Config.AlarmDuration = 10 -- time in Secouns
+Config.AlarmDuration = 10                                        -- time in Secouns
 
 -- xsoundbomd
 Config.TitleBomb = 'Dynamite'
@@ -71,12 +94,12 @@ Config.RobberyLocations = {
         Name = 'Blackwater General Store',
         LockpickItem = 'lockpick',
         Locations = {
-            { Coord = vector3(-789.28, -1326.11, 44.0), Cooldown = 30 }, -- Cooldown in Min
-            { Coord = vector3(-783.2,  -1326.48, 44.0), Cooldown = 30 }, -- Cooldown in Min
-            { Coord = vector3(-780.0,  -1321.43, 44.0), Cooldown = 30 }, -- Cooldown in Min
+            { Coord = vector3(-789.28, -1326.11, 44.0), Cooldown = 30 },       -- Cooldown in Min
+            { Coord = vector3(-783.2, -1326.48, 44.0),  Cooldown = 30 },       -- Cooldown in Min
+            { Coord = vector3(-780.0, -1321.43, 44.0),  Cooldown = 30 },       -- Cooldown in Min
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -84,14 +107,14 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
@@ -100,7 +123,7 @@ Config.RobberyLocations = {
         NPCCopLocations = {
             { Coord = vector3(-804.18, -1291.56, 43.59) },
             { Coord = vector3(-816.43, -1309.71, 43.79) },
-            { Coord = vector3(-809.54, -1329.6,  43.79) },
+            { Coord = vector3(-809.54, -1329.6, 43.79) },
             { Coord = vector3(-793.77, -1350.37, 43.88) },
             { Coord = vector3(-772.87, -1336.48, 43.68) },
             { Coord = vector3(-775.99, -1302.19, 43.96) },
@@ -115,8 +138,8 @@ Config.RobberyLocations = {
             { Coord = vector3(-321.39, 799.56, 118.0), Cooldown = 30 },
             { Coord = vector3(-325.35, 797.21, 118.0), Cooldown = 30 },
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -124,14 +147,14 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
@@ -155,8 +178,8 @@ Config.RobberyLocations = {
             { Coord = vector3(-278.02, 777.91, 119.62), Cooldown = 30 },
             { Coord = vector3(-282.52, 780.55, 119.65), Cooldown = 30 },
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -164,14 +187,14 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
@@ -195,8 +218,8 @@ Config.RobberyLocations = {
             { Coord = vector3(1329.58, -1290.48, 77.14), Cooldown = 30 },
             { Coord = vector3(1327.78, -1292.2, 77.140), Cooldown = 30 },
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -204,14 +227,14 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
@@ -235,8 +258,8 @@ Config.RobberyLocations = {
             { Coord = vector3(1320.14, -1326.09, 78.00), Cooldown = 30 },
             { Coord = vector3(1328.35, -1323.65, 78.01), Cooldown = 30 },
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -244,14 +267,14 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
@@ -271,12 +294,12 @@ Config.RobberyLocations = {
         Name = 'Annesburg Weapon Store',
         LockpickItem = 'lockpick',
         Locations = {
-            { Coord = vector3(2947.55, 1322.7,  44.94), Cooldown = 30 },
+            { Coord = vector3(2947.55, 1322.7, 44.94),  Cooldown = 30 },
             { Coord = vector3(2949.38, 1319.45, 44.94), Cooldown = 30 },
             { Coord = vector3(2945.85, 1316.09, 44.94), Cooldown = 30 },
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -284,14 +307,14 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
@@ -302,8 +325,8 @@ Config.RobberyLocations = {
             { Coord = vector3(2909.26, 1317.88, 45.09) },
             { Coord = vector3(2907.58, 1330.73, 48.25) },
             { Coord = vector3(2928.67, 1356.63, 44.42) },
-            { Coord = vector3(2943.5,  1362.38, 44.19) },
-            { Coord = vector3(2947.7,  1345.86, 44.94) },
+            { Coord = vector3(2943.5, 1362.38, 44.19) },
+            { Coord = vector3(2947.7, 1345.86, 44.94) },
         },
     },
     { -- Saint Denis General Store
@@ -315,8 +338,8 @@ Config.RobberyLocations = {
             { Coord = vector3(2833.48, -1312.56, 46.88), Cooldown = 30 },
             { Coord = vector3(2826.46, -1321.29, 46.88), Cooldown = 30 },
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -324,14 +347,14 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
@@ -355,8 +378,8 @@ Config.RobberyLocations = {
             { Coord = vector3(2717.47, -1280.07, 49.75), Cooldown = 30 },
             { Coord = vector3(2710.21, -1286.95, 49.75), Cooldown = 30 },
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -364,14 +387,14 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
@@ -391,7 +414,7 @@ Config.RobberyLocations = {
         Type = 'Bank',
         Name = 'Blackwater Bank',
         DynamiteItem = 'dynamite',
-        Dynamite = { Model = 'p_dynamite01x', x = -817.4871215820313, y = -1273.9844970703126 ,z = 42.84000015258789, pitch = 0.0, roll = -90.0, yaw = -0.11473552882671 },
+        Dynamite = { Model = 'p_dynamite01x', x = -817.4871215820313, y = -1273.9844970703126, z = 42.84000015258789, pitch = 0.0, roll = -90.0, yaw = -0.11473552882671 },
         VaultDoor = 1462330364,
         State = 1, -- Blackwater bank, vault,
         LockpickItem = 'lockpick',
@@ -399,12 +422,12 @@ Config.RobberyLocations = {
             { Coord = vector3(-817.04, -1273.83, 43.77), Cooldown = 30 }, -- Always Use VAULT DOOR -- Cooldown in Min
         },
         CashLocations = {
-            { Coord = vector3(-820.96, -1274.97, 43.77), Cooldown = 30 }, -- ONLY for Banks
-            { Coord = vector3(-820.96, -1273.33, 43.77), Cooldown = 30 }, -- ONLY for Banks
-            { Coord = vector3(-818.81, -1273.49, 43.78), Cooldown = 30 }, -- ONLY for Banks
+            { Coord = vector3(-820.96, -1274.97, 43.77), Cooldown = 30 },      -- ONLY for Banks
+            { Coord = vector3(-820.96, -1273.33, 43.77), Cooldown = 30 },      -- ONLY for Banks
+            { Coord = vector3(-818.81, -1273.49, 43.78), Cooldown = 30 },      -- ONLY for Banks
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -412,21 +435,21 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
         SpawnNpcsCops = true,
         CopModel = 'CS_VALSHERIFF',
         NPCCopLocations = {
-            { Coord = vector3(-807.1,  -1276.58, 43.78) },
+            { Coord = vector3(-807.1, -1276.58, 43.78) },
             { Coord = vector3(-792.95, -1280.55, 43.75) },
             { Coord = vector3(-808.38, -1261.82, 43.79) },
             { Coord = vector3(-832.42, -1276.27, 43.70) },
@@ -438,20 +461,20 @@ Config.RobberyLocations = {
         Type = 'Bank',
         Name = 'Valentine Bank',
         DynamiteItem = 'dynamite',
-        Dynamite = { Model = 'p_dynamite01x', x = -307.2300109863281, y = 766.6699829101562 ,z = 117.9000015258789, pitch = 0.0, roll = -90.0, yaw = 99.99998474121094 },
+        Dynamite = { Model = 'p_dynamite01x', x = -307.2300109863281, y = 766.6699829101562, z = 117.9000015258789, pitch = 0.0, roll = -90.0, yaw = 99.99998474121094 },
         VaultDoor = 576950805,
         State = 1, -- Valentine bank, vault,
         LockpickItem = 'lockpick',
         Locations = {
-            { Coord = vector3(-307.3, 767.21, 118.82), Cooldown = 30 }, -- Always Use VAULT DOOR 
+            { Coord = vector3(-307.3, 767.21, 118.82), Cooldown = 30 }, -- Always Use VAULT DOOR
         },
         CashLocations = {
-            { Coord = vector3(-308.08, 762.62, 118.82), Cooldown = 30 }, -- ONLY for Banks
-            { Coord = vector3(-308.65, 765.18, 118.82), Cooldown = 30 }, -- ONLY for Banks
-            { Coord = vector3(-304.33, 763.29, 118.82), Cooldown = 30 }, -- ONLY for Banks
+            { Coord = vector3(-308.08, 762.62, 118.82), Cooldown = 30 },       -- ONLY for Banks
+            { Coord = vector3(-308.65, 765.18, 118.82), Cooldown = 30 },       -- ONLY for Banks
+            { Coord = vector3(-304.33, 763.29, 118.82), Cooldown = 30 },       -- ONLY for Banks
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -459,14 +482,14 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
@@ -485,20 +508,20 @@ Config.RobberyLocations = {
         Type = 'Bank',
         Name = 'Rhodes Bank',
         DynamiteItem = 'dynamite',
-        Dynamite = { Model = 'p_dynamite01x', x = 1282.80810546875, y = -1308.8900146484375 ,z = 76.2300033569336, pitch = 0.0, roll = -90.0, yaw = -86.0 },
+        Dynamite = { Model = 'p_dynamite01x', x = 1282.80810546875, y = -1308.8900146484375, z = 76.2300033569336, pitch = 0.0, roll = -90.0, yaw = -86.0 },
         VaultDoor = 3483244267,
         State = 1, -- Rhodes bank, vault,
         LockpickItem = 'lockpick',
         Locations = {
-            { Coord = vector3(1282.49, -1308.41, 77.16), Cooldown = 30 }, -- Always Use VAULT DOOR 
+            { Coord = vector3(1282.49, -1308.41, 77.16), Cooldown = 30 }, -- Always Use VAULT DOOR
         },
         CashLocations = {
-            { Coord = vector3(1282.07, -1311.69, 77.16), Cooldown = 30 }, -- ONLY for Banks
-            { Coord = vector3(1288.13, -1313.52, 77.16), Cooldown = 30 }, -- ONLY for Banks
-            { Coord = vector3(1286.91, -1315.47, 77.16), Cooldown = 30 }, -- ONLY for Banks
+            { Coord = vector3(1282.07, -1311.69, 77.16), Cooldown = 30 },      -- ONLY for Banks
+            { Coord = vector3(1288.13, -1313.52, 77.16), Cooldown = 30 },      -- ONLY for Banks
+            { Coord = vector3(1286.91, -1315.47, 77.16), Cooldown = 30 },      -- ONLY for Banks
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -506,14 +529,14 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
@@ -532,20 +555,20 @@ Config.RobberyLocations = {
         Type = 'Bank',
         Name = 'Saint Denis Bank',
         DynamiteItem = 'dynamite',
-        Dynamite = { Model = 'p_dynamite01x', x = 2643.72998046875, y = -1300.52001953125 ,z = 51.43999862670898, pitch = 0.0, roll = -90.0, yaw = -155.41461181640625 },
+        Dynamite = { Model = 'p_dynamite01x', x = 2643.72998046875, y = -1300.52001953125, z = 51.43999862670898, pitch = 0.0, roll = -90.0, yaw = -155.41461181640625 },
         VaultDoor = 1751238140,
         State = 1, -- Saint Denis bank, vault,
         LockpickItem = 'lockpick',
         Locations = {
-            { Coord = vector3(2643.96, -1299.84, 52.37), Cooldown = 30 }, -- Always Use VAULT DOOR 
+            { Coord = vector3(2643.96, -1299.84, 52.37), Cooldown = 30 }, -- Always Use VAULT DOOR
         },
         CashLocations = {
-            { Coord = vector3(2644.91, -1304.73, 52.37), Cooldown = 30 }, -- ONLY for Banks
-            { Coord = vector3(2643.17, -1307.04, 52.37), Cooldown = 30 }, -- ONLY for Banks
-            { Coord = vector3(2641.2,  -1302.71, 52.37), Cooldown = 30 }, -- ONLY for Banks
+            { Coord = vector3(2644.91, -1304.73, 52.37), Cooldown = 30 },      -- ONLY for Banks
+            { Coord = vector3(2643.17, -1307.04, 52.37), Cooldown = 30 },      -- ONLY for Banks
+            { Coord = vector3(2641.2, -1302.71, 52.37),  Cooldown = 30 },      -- ONLY for Banks
         },
-        Safe = {math.random(0,99),math.random(0,99),math.random(0,99)}, -- Every math.random(0,99) is 1 in This case its 3 locks
-        ChanceToAlertPolice = 100, -- Chance in %
+        Safe = { math.random(0, 99), math.random(0, 99), math.random(0, 99) }, -- Every math.random(0,99) is 1 in This case its 3 locks
+        ChanceToAlertPolice = 100,                                             -- Chance in %
         Reward = {
             Money = true,
             MoneyMin = 15,
@@ -553,14 +576,14 @@ Config.RobberyLocations = {
             MoneyType = 0, -- 0 Money 1 Gold 2 Blackmoney
             Item = true,
             Items = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
             },
-            LuckyItem = true, -- Pick 1 Lucky Items fromn the Lucky Items List Below
+            LuckyItem = true,     -- Pick 1 Lucky Items fromn the Lucky Items List Below
             LuckyItemChance = 50, -- Chance in %
             LuckyItems = {
-                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant'},
-                { ItemName = 'salt', Amount = 1, ItemLabel = 'Salz'},
-                { ItemName = 'wheat', Amount = 1, ItemLabel = 'Weizen'},
+                { ItemName = 'diamond', Amount = 1, ItemLabel = 'Diamant' },
+                { ItemName = 'salt',    Amount = 1, ItemLabel = 'Salz' },
+                { ItemName = 'wheat',   Amount = 1, ItemLabel = 'Weizen' },
             },
         },
         OnDutyCopsNeeded = 0,
@@ -569,10 +592,10 @@ Config.RobberyLocations = {
         NPCCopLocations = {
             { Coord = vector3(2643.46, -1312.24, 51.12) },
             { Coord = vector3(2633.43, -1285.70, 52.39) },
-            { Coord = vector3(2660.3,  -1272.32, 52.17) },
+            { Coord = vector3(2660.3, -1272.32, 52.17) },
             { Coord = vector3(2648.51, -1257.79, 52.49) },
-            { Coord = vector3(2612.5,  -1319.93, 51.28) },
-            { Coord = vector3(2626.8,  -1336.73, 50.25) },
+            { Coord = vector3(2612.5, -1319.93, 51.28) },
+            { Coord = vector3(2626.8, -1336.73, 50.25) },
         },
     },
 }
